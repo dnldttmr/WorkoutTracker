@@ -6,14 +6,17 @@
     <color name="colorAccent">#FF4081</color>
 
     <!--Design colours-->
-    <color name="DarkPrimaryColor">#455A64</color>
-    <color name="PrimaryColor">#607D8B</color>
-    <color name="LightPrimaryColor">#CFD8DC</color>
+    <color name="DarkPrimaryColor">#03A9F4</color>
+    <color name="PrimaryColor">#B3E5FC</color>
+    <color name="LightPrimaryColor">#E1F5FE</color>
     <color name="TextIcons">#FFFFFF</color>
-    <color name="AccentColor">#4CAF50</color>
-    <color name="PrimaryText">#4CAF50</color>
-    <color name="SecondaryText">#727272</color>
-    <color name="DividerColor">#B6B6B6</color>
+    <color name="AccentColor">#B3E5FC</color>
+    <color name="PrimaryText">#0091EA</color>
+    <color name="SecondaryText">#00B0FF</color>
+    <color name="DividerColor">#000000</color>
 
-
+    <!--Application colours-->
+    <color name="yellow">#FFFF33</color>
+    <color name="red">#FF0000</color>
+    <color name="green">#009900</color>
 </resources>

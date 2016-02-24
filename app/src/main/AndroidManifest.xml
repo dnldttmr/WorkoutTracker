@@ -17,6 +17,8 @@
         </activity>
         <activity android:name=".ExerciseOverview" >
         </activity>
+        <activity android:name=".SingleExerciseView" >
+        </activity>
     </application>
 
 </manifest>

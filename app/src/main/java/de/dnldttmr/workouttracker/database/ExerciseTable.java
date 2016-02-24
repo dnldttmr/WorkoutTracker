@@ -30,13 +30,14 @@ public class ExerciseTable extends SQLiteOpenHelper{
     private static final String EXERCISES_DESC = "description";
     private static final String EXERCISES_SETS = "sets";
     private static final String EXERCISES_REPS = "reps";
+    private static final String EXERCISE_DIFFICULTY = "difficulty";
     private static final String EXERCISES_PHOTO = "photo";
     private static final String EXERICSES_VIDEO = "video";
     private static final String EXERCISES_LINK = "link";
 
     //Column name Array
     private String[] columns = {EXERCISES_ID, EXERCISES_NAME, EXERCISES_MUSCLEGROUP, EXERCISES_DESC, EXERCISES_SETS,
-        EXERCISES_REPS, EXERCISES_PHOTO, EXERICSES_VIDEO, EXERCISES_LINK};
+        EXERCISES_REPS, EXERCISE_DIFFICULTY, EXERCISES_PHOTO, EXERICSES_VIDEO, EXERCISES_LINK};
     //Create tables
     //Exercises
     private static final String CREATE_TABLE_EXERCISES =
@@ -47,6 +48,7 @@ public class ExerciseTable extends SQLiteOpenHelper{
                     + EXERCISES_DESC + " TEXT, "
                     + EXERCISES_SETS + " INTEGER, "
                     + EXERCISES_REPS + " INTEGER, "
+                    + EXERCISE_DIFFICULTY + " INTEGER, "
                     + EXERCISES_PHOTO + " TEXT, "
                     + EXERICSES_VIDEO + " TEXT, "
                     + EXERCISES_LINK + " TEXT)";
@@ -77,6 +79,7 @@ public class ExerciseTable extends SQLiteOpenHelper{
         values.put(EXERCISES_DESC, exercise.getDescription());
         values.put(EXERCISES_SETS, exercise.getSets());
         values.put(EXERCISES_REPS, exercise.getReps());
+        values.put(EXERCISE_DIFFICULTY, exercise.getDifficulty());
         values.put(EXERCISES_PHOTO, exercise.getPhoto());
         values.put(EXERICSES_VIDEO, exercise.getVideo());
         values.put(EXERCISES_LINK, exercise.getLink());
@@ -92,6 +95,7 @@ public class ExerciseTable extends SQLiteOpenHelper{
         Cursor cursor = db.query(TABLE_EXERCISES, columns, null, null, null, null, null);
 
         cursor.moveToFirst();
+
         while(!cursor.isAfterLast()) {
             Exercise exercise = new Exercise();
             exercise.setId(Integer.parseInt(cursor.getString(0)));
@@ -100,9 +104,10 @@ public class ExerciseTable extends SQLiteOpenHelper{
             exercise.setDescription(cursor.getString(3));
             exercise.setSets(Integer.parseInt(cursor.getString(4)));
             exercise.setReps(Integer.parseInt(cursor.getString(5)));
-            exercise.setPhoto(cursor.getString(6));
-            exercise.setVideo(cursor.getString(7));
-            exercise.setLink(cursor.getString(8));
+            exercise.setDifficulty(Integer.parseInt(cursor.getString(6)));
+            exercise.setPhoto(cursor.getString(7));
+            exercise.setVideo(cursor.getString(8));
+            exercise.setLink(cursor.getString(9));
 
             exercises.add(exercise);
 

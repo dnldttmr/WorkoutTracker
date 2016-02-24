@@ -8,6 +8,7 @@ public class Exercise {
     private String desc;
     private int sets;
     private int reps;
+    private int difficulty;
     private String photo;
     private String video;
     private String link;
@@ -16,12 +17,13 @@ public class Exercise {
 
     }
 
-    public Exercise(String name, String muscle_group, String description, int sets, int reps, String photo, String video, String link) {
+    public Exercise(String name, String muscle_group, String description, int sets, int reps, int difficulty, String photo, String video, String link) {
         this.name = name;
         this.muscle_group = muscle_group;
         this.desc = description;
         this.sets = sets;
         this.reps = reps;
+        this.difficulty = difficulty;
         this.photo = photo;
         this.video = video;
         this.link = link;
@@ -74,6 +76,10 @@ public class Exercise {
     public void setReps(int reps) {
         this.reps = reps;
     }
+
+    public int getDifficulty() { return difficulty; }
+
+    public void setDifficulty(int difficulty) { this.difficulty = difficulty; }
 
     public String getPhoto() {
         return photo;
