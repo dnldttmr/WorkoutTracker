@@ -65,8 +65,11 @@ public class MainActivity extends AppCompatActivity {
         exercise_table.createExercise(new Exercise("Leg Press", "Legs",
                 "Sit on the machine with your back on the padded support. Place your feet on the platform in front of you. Grap the handels to your left and your right. Push the platform with your feet until your knees are almost fully extended. After a second of squeezing, slowly lower the platform until you reach the starting position. Repeat the movement until you reached the recommended number of repetitions",
                 3, 13, 1, "legpress", "", "http://www.exrx.net/WeightExercises/Quadriceps/SLSeatedLegPress.html"));
-        exercise_table.createExercise(new Exercise("Calf Raises", "Calves",
-                "",
+        exercise_table.createExercise(new Exercise("Standing Calf Raises", "Calves",
+                "Place your shoulders under the pads provided and position your toes facing forward. The balls of your feet should be secured on the top of the machine. Push the lever up by extending your hips and knees until your torso is standing errect. Knees should be always bend; never locked. Raise your heels as your breath out. Hold the contracted position by a second before returning to the starting position. Repeat the movement until you reach the recommended amount of repetitions.",
                 3, 12, 1, "calfraises", "", "www.exrx.net/WeightExercises/Gastrocnemius/BWStandingCalfRaise.html"));
+        exercise_table.createExercise(new Exercise("Deadlift", "Back",
+                "Approach the bar so that it is centered over your feet. Your feet should be about hip-width apart. Bend at the hip to grip the bar at shoulder-width allowing your shoulder blades to protract. Typically, you would use an alternating grip. With your feet and your grip set, take a big breath and then lower your hips and flex the knees until your shins contact the bar. Look forward with your head. Keep your chest up and your back arched, and begin driving through the heels to move the weight upward. After the bar passes the knees aggressively pull the bar back, pulling your shoulder blades together as you drive your hips forward into the bar. Lower the bar by bending at the hips and guiding it to the floor. Repeat the movement until your reached the recommend amount of repetitions.",
+                3,10, 3, "deadlift", "", "http://www.exrx.net/WeightExercises/ErectorSpinae/BBDeadlift.html"));
     }
 }

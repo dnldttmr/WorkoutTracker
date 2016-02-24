@@ -37,7 +37,8 @@ public class ExerciseOverview extends AppCompatActivity {
                     if(e.getName() == exerciseList.get(position).getName()) {
                         //Get the information
                         Intent intent = new Intent(getBaseContext(), SingleExerciseView.class);
-                        intent.putExtra("id", e.getId());
+
+                        /*intent.putExtra("id", e.getId());
                         intent.putExtra("name", e.getName());
                         intent.putExtra("muscleGroup", e.getMuscle_group());
                         intent.putExtra("desc", e.getDescription());
@@ -47,6 +48,9 @@ public class ExerciseOverview extends AppCompatActivity {
                         intent.putExtra("photo", e.getPhoto());
                         intent.putExtra("video", e.getVideo());
                         intent.putExtra("link", e.getLink());
+                        startActivity(intent);*/
+
+                        intent.putExtra("exerciseObject", e);
                         startActivity(intent);
                     }
                 }

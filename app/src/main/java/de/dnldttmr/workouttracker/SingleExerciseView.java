@@ -5,8 +5,11 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Html;
 import android.text.method.LinkMovementMethod;
+import android.text.method.ScrollingMovementMethod;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import de.dnldttmr.workouttracker.database.Exercise;
 
 public class SingleExerciseView extends AppCompatActivity {
 
@@ -43,7 +46,8 @@ public class SingleExerciseView extends AppCompatActivity {
 
         //Getting the content
         Intent intent = getIntent();
-        id = intent.getIntExtra("id", 0);
+
+        /*id = intent.getIntExtra("id", 0);
         name = intent.getStringExtra("name");
         muscleGroup = intent.getStringExtra("muscleGroup");
         description = intent.getStringExtra("desc");
@@ -52,7 +56,19 @@ public class SingleExerciseView extends AppCompatActivity {
         difficulty = intent.getIntExtra("difficulty", 2);
         photo = intent.getStringExtra("photo");
         video = intent.getStringExtra("video");
-        link = intent.getStringExtra("link");
+        link = intent.getStringExtra("link");*/
+
+        Exercise exercise = (Exercise) intent.getSerializableExtra("exerciseObject");
+        id = exercise.getId();
+        name = exercise.getName();
+        muscleGroup = exercise.getMuscle_group();
+        description = exercise.getDescription();
+        sets = exercise.getSets();
+        reps = exercise.getReps();
+        difficulty = exercise.getDifficulty();
+        photo = exercise.getPhoto();
+        video = exercise.getVideo();
+        link = exercise.getLink();
 
         //Filling the fields with the content
         tv_name.setText(name);
@@ -60,6 +76,7 @@ public class SingleExerciseView extends AppCompatActivity {
         tv_muscleGroup.setText(muscleGroup);
 
         tv_description.setText(description);
+        tv_description.setMovementMethod(new ScrollingMovementMethod());
 
         switch (muscleGroup) {
             case "Chest/Triceps":
@@ -76,6 +93,9 @@ public class SingleExerciseView extends AppCompatActivity {
                 break;
             case "Calves":
                 iv_muscleGroup.setImageResource(R.drawable.mg_calves);
+                break;
+            case "Back":
+                iv_muscleGroup.setImageResource(R.drawable.mg_back);
                 break;
             default:
                 iv_muscleGroup.setImageResource(R.drawable.no_picture);
