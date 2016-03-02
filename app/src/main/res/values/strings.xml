@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">WorkoutTracker</string>
+    <string name="app_name">Workout Tracker</string>
     <string name="btn_exerciseOverview">Exercise Overview</string>
     <string name="btn_workoutPlan">My Workout Plan</string>
     <string name="btn_trackWorkout">Track Workout</string>
@@ -13,4 +13,10 @@
     <string name="tv_or">or</string>
     <string name="sample_description">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</string>
     <string name="sample_link">Sample link</string>
+    <string name="custom_name">Name</string>
+    <string name="custom_description">Description</string>
+    <string name="custom_reps">Repetitions</string>
+    <string name="custom_sets">Sets</string>
+    <string name="custom_difficulty">Difficulty</string>
+    <string name="custom_mg">Muscle group</string>
 </resources>

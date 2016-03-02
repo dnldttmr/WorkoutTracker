@@ -6,8 +6,11 @@ import android.support.v7.app.AppCompatActivity;
 import android.text.Html;
 import android.text.method.LinkMovementMethod;
 import android.text.method.ScrollingMovementMethod;
+import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import de.dnldttmr.workouttracker.database.Exercise;
 
@@ -19,6 +22,7 @@ public class SingleExerciseView extends AppCompatActivity {
     private TextView tv_description;
     private ImageView iv_muscleGroup;
     private TextView tv_link;
+    private Button btn_video;
 
     //Content variables
     private int id;
@@ -43,6 +47,7 @@ public class SingleExerciseView extends AppCompatActivity {
         tv_description = (TextView) findViewById(R.id.tv_singleDescription);
         iv_muscleGroup = (ImageView) findViewById(R.id.iv_singleMuscleGroup);
         tv_link = (TextView) findViewById(R.id.tv_singleLink);
+        btn_video = (Button) findViewById(R.id.btn_singleVideo);
 
         //Getting the content
         Intent intent = getIntent();
@@ -102,9 +107,33 @@ public class SingleExerciseView extends AppCompatActivity {
                 break;
         }
 
-        tv_link.setClickable(true);
-        tv_link.setMovementMethod(LinkMovementMethod.getInstance());
-        String htmlLink = "<a href='" + link + "'>Check exercise online</a>";
-        tv_link.setText(Html.fromHtml(htmlLink));
+        //Link
+        if(link.equals("")) {
+            tv_link.setClickable(true);
+            tv_link.setMovementMethod(LinkMovementMethod.getInstance());
+            String htmlLink = "<a href='http://www.exrx.net'>Check exercise online</a>";
+            tv_link.setText(Html.fromHtml(htmlLink));
+        }
+        else {
+            tv_link.setClickable(true);
+            tv_link.setMovementMethod(LinkMovementMethod.getInstance());
+            String htmlLink = "<a href='" + link + "'>Check exercise online</a>";
+            tv_link.setText(Html.fromHtml(htmlLink));
+        }
+
+        //VideoView
+        btn_video.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(video.equals("")) {
+                    Toast.makeText(getApplicationContext(), "No video available!", Toast.LENGTH_SHORT).show();
+                }
+                else {
+                    Intent intent = new Intent(getBaseContext(), VideoViewer.class);
+                    intent.putExtra("videoName", video);
+                    startActivity(intent);
+                }
+            }
+        });
     }
 }

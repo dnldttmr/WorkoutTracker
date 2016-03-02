@@ -8,7 +8,9 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import de.dnldttmr.workouttracker.R;
@@ -19,12 +21,17 @@ public class ExerciseListAdapter extends BaseAdapter{
     private Context context;
     private LayoutInflater inflater;
     private List<Exercise> exerciseList;
+    private ArrayList<Exercise> exerciseListCopy;
     private View view;
 
     public ExerciseListAdapter(Context context, List<Exercise> exerciseList) {
         inflater = LayoutInflater.from(context);
         this.context = context;
         this.exerciseList = exerciseList;
+
+        //create a copy from the List
+        this.exerciseListCopy = new ArrayList<Exercise>();
+        exerciseListCopy.addAll(exerciseList);
     }
     @Override
     public int getCount() {
@@ -105,5 +112,33 @@ public class ExerciseListAdapter extends BaseAdapter{
         }
 
         return view;
+    }
+
+    //filter function
+    public void filter(CharSequence sequence) {
+        String text = sequence.toString();
+        //clear the exercise list to apply the result to the list
+        exerciseList.clear();
+        if (text.length() == 0) {
+            exerciseList.addAll(exerciseListCopy);
+        }
+        else {
+            for(Exercise e: exerciseListCopy) {
+                //check if the string matches either a name or a muscle group
+                if(e.getName().toLowerCase()
+                        .contains(text.toLowerCase())
+                        || e.getMuscle_group().toLowerCase()
+                        .contains(text.toLowerCase())) {
+                    exerciseList.add(e);
+                }
+            }
+        }
+
+        if(exerciseList.size() == 0) {
+            Toast.makeText(context, "No exercises found!", Toast.LENGTH_SHORT).show();
+        }
+
+        //Send changes to ListView
+        notifyDataSetChanged();
     }
 }
