@@ -10,14 +10,14 @@ import android.widget.EditText;
 import android.widget.Spinner;
 
 import de.dnldttmr.workouttracker.database.Exercise;
-import de.dnldttmr.workouttracker.database.ExerciseTable;
+import de.dnldttmr.workouttracker.database.DatabaseTables;
 
 public class AddCustomExercise extends AppCompatActivity {
 
     private EditText name;
     private EditText desc;
     private Button btn_add;
-    private ExerciseTable exerciseTable;
+    private DatabaseTables databaseTables;
     private Spinner spinner_mg;
     private Spinner spinner_reps;
     private Spinner spinner_sets;
@@ -40,7 +40,7 @@ public class AddCustomExercise extends AppCompatActivity {
         desc = (EditText) findViewById(R.id.et_customDescription);
         btn_add = (Button) findViewById(R.id.btn_customAdd);
 
-        exerciseTable = new ExerciseTable(getApplicationContext());
+        databaseTables = new DatabaseTables(getApplicationContext());
 
         adapter_mg = ArrayAdapter.createFromResource(this, R.array.spinner_mg, android.R.layout.simple_spinner_dropdown_item);
         spinner_mg.setAdapter(adapter_mg);
@@ -84,7 +84,7 @@ public class AddCustomExercise extends AppCompatActivity {
                 }
 
                 //public Exercise(String name, String muscle_group, String description, int sets, int reps, int difficulty, String photo, String video, String link)
-                exerciseTable.createExercise(new Exercise(customName, mg, customDesc, nSets, nReps, nDifficulty, "", "", ""));
+                databaseTables.createExercise(new Exercise(customName, mg, customDesc, nSets, nReps, nDifficulty, "", "", ""));
                 Intent intent = new Intent(getBaseContext(), ExerciseOverview.class);
                 startActivity(intent);
                 finish();

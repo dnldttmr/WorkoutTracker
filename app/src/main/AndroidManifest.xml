@@ -25,6 +25,10 @@
         </activity>
         <activity android:name=".AddCustomExercise" >
         </activity>
+        <activity android:name=".WorkoutPlanOverview" >
+        </activity>
+        <activity android:name=".SingleWorkoutPlanView" >
+        </activity>
     </application>
 
 </manifest>

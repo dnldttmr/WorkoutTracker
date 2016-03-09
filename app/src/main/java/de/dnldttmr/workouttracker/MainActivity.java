@@ -8,14 +8,15 @@ import android.view.View;
 import android.widget.Button;
 
 import de.dnldttmr.workouttracker.database.Exercise;
-import de.dnldttmr.workouttracker.database.ExerciseTable;
+import de.dnldttmr.workouttracker.database.DatabaseTables;
 
 public class MainActivity extends AppCompatActivity {
 
     //Variables
     private SharedPreferences prefs = null;
-    private ExerciseTable exercise_table;
+    private DatabaseTables exercise_table;
     private Button btn_exerciseOverview;
+    private Button btn_workoutPlan;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,8 +25,10 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         btn_exerciseOverview = (Button) findViewById(R.id.btn_exerciseOverview);
+        btn_workoutPlan = (Button) findViewById(R.id.btn_workoutPlan);
 
-        exercise_table = new ExerciseTable(getApplicationContext());
+        exercise_table = new DatabaseTables(getApplicationContext());
+
         //check for the first run of the application
         prefs = getSharedPreferences("de.dnldttmr.workouttracker", MODE_PRIVATE);
 
@@ -44,6 +47,14 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getBaseContext(), ExerciseOverview.class);
+                startActivity(intent);
+            }
+        });
+
+        btn_workoutPlan.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getBaseContext(), WorkoutPlanOverview.class);
                 startActivity(intent);
             }
         });

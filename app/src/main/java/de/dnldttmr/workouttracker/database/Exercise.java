@@ -4,7 +4,7 @@ import java.io.Serializable;
 
 public class Exercise implements Serializable {
 
-    private int id;
+    private int exercise_id;
     private String name;
     private String muscle_group;
     private String desc;
@@ -32,11 +32,11 @@ public class Exercise implements Serializable {
     }
 
     public int getId() {
-        return id;
+        return exercise_id;
     }
 
     public void setId(int id) {
-        this.id = id;
+        this.exercise_id = id;
     }
 
     public String getName() {

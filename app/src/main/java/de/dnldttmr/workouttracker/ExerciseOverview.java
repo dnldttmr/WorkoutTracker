@@ -15,12 +15,12 @@ import java.util.List;
 
 import de.dnldttmr.workouttracker.adapter.ExerciseListAdapter;
 import de.dnldttmr.workouttracker.database.Exercise;
-import de.dnldttmr.workouttracker.database.ExerciseTable;
+import de.dnldttmr.workouttracker.database.DatabaseTables;
 
 public class ExerciseOverview extends AppCompatActivity {
 
     private ListView lv;
-    private ExerciseTable exerciseTable;
+    private DatabaseTables databaseTables;
     private List<Exercise> exerciseList;
     private EditText filter;
     private Button btn_addCustomExercise;
@@ -34,7 +34,7 @@ public class ExerciseOverview extends AppCompatActivity {
         lv = (ListView) findViewById(R.id.lv_exerciseOverview);
         btn_addCustomExercise = (Button) findViewById(R.id.btn_addCustomExercise);
 
-        exerciseTable = new ExerciseTable(getApplicationContext());
+        databaseTables = new DatabaseTables(getApplicationContext());
 
         loadExerciseData();
 
@@ -76,7 +76,7 @@ public class ExerciseOverview extends AppCompatActivity {
     }
 
     private void loadExerciseData() {
-        exerciseList = exerciseTable.getAllExercises();
+        exerciseList = databaseTables.getAllExercises();
 
         final ExerciseListAdapter adapter = new ExerciseListAdapter(this, exerciseList);
         lv.setAdapter(adapter);
