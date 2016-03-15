@@ -17,6 +17,8 @@ public class MainActivity extends AppCompatActivity {
     private DatabaseTables exercise_table;
     private Button btn_exerciseOverview;
     private Button btn_workoutPlan;
+    private Button btn_trackWorkout;
+    private Button btn_statistics;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,6 +28,8 @@ public class MainActivity extends AppCompatActivity {
 
         btn_exerciseOverview = (Button) findViewById(R.id.btn_exerciseOverview);
         btn_workoutPlan = (Button) findViewById(R.id.btn_workoutPlan);
+        btn_trackWorkout = (Button) findViewById(R.id.btn_trackWorkout);
+        btn_statistics = (Button) findViewById(R.id.btn_logOverview);
 
         exercise_table = new DatabaseTables(getApplicationContext());
 
@@ -59,6 +63,20 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        btn_trackWorkout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getBaseContext(), TrackWorkoutPlanOverview.class);
+                startActivity(intent);
+            }
+        });
+
+        btn_statistics.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
     }
 
     private void setupDatabase() {

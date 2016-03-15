@@ -17,7 +17,7 @@ import de.dnldttmr.workouttracker.database.WorkoutPlan;
 public class WorkoutPlanOverview extends AppCompatActivity {
 
     private ListView lv;
-    private DatabaseTables workoutPlanTable;
+    private DatabaseTables databaseTables;
     private List<WorkoutPlan> workoutPlanList;
     private Button btn_addNewWorkoutPlan;
 
@@ -28,7 +28,7 @@ public class WorkoutPlanOverview extends AppCompatActivity {
 
         lv = (ListView) findViewById(R.id.lv_workoutPlanOverview);
 
-        workoutPlanTable = new DatabaseTables(getApplicationContext());
+        databaseTables = new DatabaseTables(getApplicationContext());
         btn_addNewWorkoutPlan = (Button) findViewById(R.id.btn_addWorkoutPlan);
 
         loadWorkoutPlanData();
@@ -50,14 +50,14 @@ public class WorkoutPlanOverview extends AppCompatActivity {
         btn_addNewWorkoutPlan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                workoutPlanTable.createWorkoutPlan();
+                databaseTables.createWorkoutPlan();
                 loadWorkoutPlanData();
             }
         });
     }
 
     private void loadWorkoutPlanData() {
-        workoutPlanList = workoutPlanTable.getAllWorkoutPlans();
+        workoutPlanList = databaseTables.getAllWorkoutPlans();
 
         final WorkoutPlanListAdapter adapter = new WorkoutPlanListAdapter(this, workoutPlanList);
 

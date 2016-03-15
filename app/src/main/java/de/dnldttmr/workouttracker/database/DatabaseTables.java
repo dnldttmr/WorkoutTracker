@@ -225,4 +225,13 @@ public class DatabaseTables extends SQLiteOpenHelper{
         db.execSQL("DELETE FROM " + TABLE_WORKOUTPLAN_EXERCISES + " " +
                 "WHERE " + EXERCISES_ID + " = " + exercise_id + " AND " + WORKOUTPLAN_ID + " = " + workoutPlan_id);
     }
+
+    public void deleteWorkoutPlan(int workoutPlanId) {
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        db.execSQL("DELETE FROM " + TABLE_WORKOUTPLAN + " " +
+                "WHERE " + WORKOUTPLAN_ID + " = " + workoutPlanId);
+        db.execSQL("DELETE FROM " + TABLE_WORKOUTPLAN_EXERCISES + " " +
+                "WHERE " + WORKOUTPLAN_ID + " = " + workoutPlanId);
+    }
 }
