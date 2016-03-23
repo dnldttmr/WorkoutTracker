@@ -8,7 +8,6 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.util.List;
 
@@ -34,7 +33,7 @@ public class WorkoutPlanExercisesListView extends BaseAdapter{
         this.workoutPlanExerciseList = workoutPlanExerciseList;
         databaseTables = new DatabaseTables(context);
         this.id = id;
-        Toast.makeText(context, "Exercises on Plan: " + workoutPlanExerciseList.size(), Toast.LENGTH_SHORT).show();
+        //Toast.makeText(context, "Exercises on Plan: " + workoutPlanExerciseList.size(), Toast.LENGTH_SHORT).show();
     }
 
     @Override
@@ -81,10 +80,11 @@ public class WorkoutPlanExercisesListView extends BaseAdapter{
             if(e.getId() == exercise.getId()){
                 //Exercise is part of the workout plan
                 check = true;
+                break;
             }
             else {
                 //Exercise is not part of the workout plan
-                check = false;
+                //check = false;
             }
         }
 

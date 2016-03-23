@@ -16,7 +16,7 @@
     <color name="DividerColor">#000000</color>
 
     <!--Application colours-->
-    <color name="yellow">#FFFF33</color>
+    <color name="yellow">#e96f15</color>
     <color name="red">#FF0000</color>
     <color name="green">#009900</color>
 </resources>

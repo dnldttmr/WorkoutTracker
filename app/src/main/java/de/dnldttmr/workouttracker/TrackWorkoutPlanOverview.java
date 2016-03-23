@@ -1,11 +1,11 @@
 package de.dnldttmr.workouttracker;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import java.util.List;
 
@@ -33,7 +33,15 @@ public class TrackWorkoutPlanOverview extends AppCompatActivity {
         lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Toast.makeText(getBaseContext(), "You clicked on item number " + position, Toast.LENGTH_SHORT).show();
+                //Toast.makeText(getBaseContext(), "You clicked on item number " + position, Toast.LENGTH_SHORT).show();
+                for (WorkoutPlan w : workoutPlanList) {
+                    //getting the ID since workout plans can have the same name
+                    if (w.getId() == workoutPlanList.get(position).getId()) {
+                        Intent intent = new Intent(getBaseContext(), TrackWorkout.class);
+                        intent.putExtra("workoutPlanObject", w);
+                        startActivity(intent);
+                    }
+                }
             }
         });
     }

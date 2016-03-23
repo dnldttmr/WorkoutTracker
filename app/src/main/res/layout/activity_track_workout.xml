@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginLeft="16dp"
+    tools:context="de.dnldttmr.workouttracker.WorkoutPlanOverview"
+    android:orientation="vertical" android:gravity="center_horizontal">
+
+    <ListView
+        android:id="@+id/lv_trackWorkoutOverview"
+        android:layout_width="match_parent"
+        android:layout_height="500dp">
+    </ListView>
+
+    <Button
+        android:id="@+id/btn_trackWorkoutSubmit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Submit">
+    </Button>
+</LinearLayout>

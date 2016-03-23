@@ -104,7 +104,7 @@ public class ExerciseListAdapter extends BaseAdapter{
                 photo.setImageResource(R.drawable.mg_calves);
                 break;
             case "Back":
-                photo.setImageResource(R.drawable.mg_calves);
+                photo.setImageResource(R.drawable.mg_back);
                 break;
             default:
                 photo.setImageResource(R.drawable.no_picture);

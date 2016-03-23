@@ -1,35 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="de.dnldttmr.workouttracker" >
+<manifest package="de.dnldttmr.workouttracker"
+          xmlns:android="http://schemas.android.com/apk/res/android">
 
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
-        android:theme="@style/WorkoutTrackerTheme" >
-        <activity android:name=".MainActivity" >
+        android:theme="@style/WorkoutTrackerTheme">
+        <activity android:name=".MainActivity">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+                <action android:name="android.intent.action.MAIN"/>
 
-                <category android:name="android.intent.category.LAUNCHER" />
+                <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <activity android:name=".ExerciseOverview" >
+        <activity android:name=".ExerciseOverview">
         </activity>
-        <activity android:name=".SingleExerciseView" >
+        <activity android:name=".SingleExerciseView">
         </activity>
         <activity
             android:name=".VideoViewer"
-            android:configChanges="orientation|screenSize" >
+            android:configChanges="orientation|screenSize">
         </activity>
-        <activity android:name=".AddCustomExercise" >
+        <activity android:name=".AddCustomExercise">
         </activity>
-        <activity android:name=".WorkoutPlanOverview" >
+        <activity android:name=".WorkoutPlanOverview">
         </activity>
-        <activity android:name=".SingleWorkoutPlanView" >
+        <activity android:name=".SingleWorkoutPlanView">
         </activity>
-        <activity android:name=".TrackWorkoutPlanOverview" >
+        <activity android:name=".TrackWorkoutPlanOverview">
+        </activity>
+        <activity android:name=".TrackWorkout">
         </activity>
     </application>
 

@@ -1,17 +1,25 @@
 <resources>
     <string name="app_name">Workout Tracker</string>
     <string name="btn_exerciseOverview">Exercise Overview</string>
-    <string name="btn_workoutPlan">My Workout Plans</string>
+    <string name="btn_workoutPlan">Workout Plans</string>
     <string name="btn_trackWorkout">Track Workout</string>
-    <string name="btn_logOverview">My Workout Log</string>
+    <string name="btn_logOverview">Workout Logs</string>
     <string name="btn_addCustomExercise">Add</string>
     <string name="sample_exerciseName">Exercise name</string>
     <string name="sample_muscleGroup">Musclegroup</string>
     <string name="sample_difficulty">Difficulty</string>
-    <string name="difficulty">Difficulty: </string>
+    <string name="difficulty">Difficulty:</string>
     <string name="filter">Search...</string>
     <string name="tv_or">or</string>
-    <string name="sample_description">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</string>
+    <string name="sample_description">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed
+        diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam
+        voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd
+        gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit
+        amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et
+        dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores
+        et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit
+        amet.
+    </string>
     <string name="sample_link">Sample link</string>
     <string name="sample_workoutplanName">Sample WorkoutPlan</string>
     <string name="custom_name">Name</string>

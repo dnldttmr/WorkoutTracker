@@ -189,7 +189,7 @@ public class DatabaseTables extends SQLiteOpenHelper{
         List<Exercise> exerciseList = new ArrayList<Exercise>();
 
         //Cursor cursor = db.exeqSQL("SELECT e.exercises_id, e.name, e.muscle_group");
-        Cursor cursor = db.rawQuery("SELECT e.exercises_id, e.name, e.muscle_group from exercises e " +
+        Cursor cursor = db.rawQuery("SELECT e.exercises_id, e.name, e.muscle_group, e.sets, e.reps from exercises e " +
                 "JOIN " + TABLE_WORKOUTPLAN_EXERCISES + " using (" + EXERCISES_ID +") " +
                 "JOIN " + TABLE_WORKOUTPLAN + " using (" + WORKOUTPLAN_ID + ") " +
                 "WHERE " + WORKOUTPLAN_ID + " = " + id, null);
@@ -201,6 +201,8 @@ public class DatabaseTables extends SQLiteOpenHelper{
             exercise.setId(Integer.parseInt(cursor.getString(0)));
             exercise.setName(cursor.getString(1));
             exercise.setMuscle_group(cursor.getString(2));
+            exercise.setSets(Integer.parseInt(cursor.getString(3)));
+            exercise.setReps(Integer.parseInt(cursor.getString(4)));
 
             exerciseList.add(exercise);
 
