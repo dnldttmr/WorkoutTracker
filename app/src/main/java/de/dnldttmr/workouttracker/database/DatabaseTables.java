@@ -11,6 +11,8 @@ import java.util.List;
 
 public class DatabaseTables extends SQLiteOpenHelper{
 
+    private String tag = "WorkoutTracker";
+
     //Logcat
     private static final String LOG = DatabaseTables.class.getName();
 
@@ -24,6 +26,8 @@ public class DatabaseTables extends SQLiteOpenHelper{
     private static final String TABLE_EXERCISES = "exercises";
     private static final String TABLE_WORKOUTPLAN = "workoutPlans";
     private static final String TABLE_WORKOUTPLAN_EXERCISES = "workoutPlans_exercises";
+    private static final String TABLE_WORKOUTLOGS = "workoutLogs";
+    private static final String TABLE_WORKOUTLOG_EXERCISES = "workoutLogs_exercises";
 
     //Column names for TABLE_EXERCISES
     private static final String EXERCISES_ID = "exercises_id";
@@ -44,11 +48,26 @@ public class DatabaseTables extends SQLiteOpenHelper{
     //Colum names for TABLE_WORKOUTPLAN_EXERCISES
     private static final String WORKOUTPLAN_EXERCISES_ID = "workoutPlans_exercises_id";
 
+    //Column names for TABLE_WORKOUTLOG
+    private static final String WORKOUTLOG_ID = "workoutLog_id";
+    private static final String WORKOUTLOG_DAY = "day";
+    private static final String WORKOUTLOG_MONTH = "month";
+    private static final String WORKOUTLOG_YEAR = "year";
+
+    //Column names for TABLE_WORKOUTLOG_EXERCISES
+    private static final String WORKOUTLOG_EXERCISES_ID = "workoutLog_exercises_id";
+    private static final String WORKOUTLOG_EXERCISES_SETS = "log_sets";
+    private static final String WORKOUTLOG_EXERCISES_REPS = "log_reps";
+    private static final String WORKOUTLOG_EXERCISES_WEIGHT = "log_weight";
+
     //Column name Array
     private String[] columns_exercise = {EXERCISES_ID, EXERCISES_NAME, EXERCISES_MUSCLEGROUP, EXERCISES_DESC, EXERCISES_SETS,
         EXERCISES_REPS, EXERCISE_DIFFICULTY, EXERCISES_PHOTO, EXERICSES_VIDEO, EXERCISES_LINK};
     private String[] columns_workoutPlan = {WORKOUTPLAN_ID, WORKOUTPLAN_NAME};
     private String[] columns_workoutPlan_exercise = {WORKOUTPLAN_EXERCISES_ID, EXERCISES_ID, WORKOUTPLAN_ID};
+    private String[] columns_workoutLog = {WORKOUTLOG_ID, WORKOUTLOG_DAY, WORKOUTLOG_MONTH, WORKOUTLOG_YEAR};
+    private String[] columns_workoutLog_exercise = {WORKOUTLOG_EXERCISES_ID, WORKOUTLOG_EXERCISES_SETS, WORKOUTLOG_EXERCISES_REPS,WORKOUTLOG_EXERCISES_WEIGHT, EXERCISES_ID, WORKOUTLOG_ID};
+
     //Create table
     //Exercises
     private static final String CREATE_TABLE_EXERCISES =
@@ -77,17 +96,40 @@ public class DatabaseTables extends SQLiteOpenHelper{
                 + EXERCISES_ID + " INTEGER, "
                 + WORKOUTPLAN_ID + " INTEGER)";
 
+    //workoutLog
+    private static final String CREATE_TABLE_WORKOUTLOG =
+            "CREATE TABLE " + TABLE_WORKOUTLOGS
+            + "(" + WORKOUTLOG_ID + " INTEGER PRIMARY KEY, "
+            + WORKOUTLOG_DAY + " INTEGER, "
+            + WORKOUTLOG_MONTH + " INTEGER, "
+            + WORKOUTLOG_YEAR + " INTEGER)";
+
+    //workoutLog exercises
+    private static final String CREATE_TABLE_WORKOUTLOG_EXERCISES =
+            "CREATE TABLE " + TABLE_WORKOUTLOG_EXERCISES
+            + "(" + WORKOUTLOG_EXERCISES_ID + " INTEGER PRIMARY KEY, "
+            + WORKOUTLOG_EXERCISES_SETS + " INTEGER, "
+            + WORKOUTLOG_EXERCISES_REPS + " INTEGER, "
+            + WORKOUTLOG_EXERCISES_WEIGHT + " INTEGER, "
+            + EXERCISES_ID + " INTEGER, "
+            + WORKOUTLOG_ID + " INTEGER)";
+
     @Override
     public void onCreate(SQLiteDatabase db) {
         db.execSQL(CREATE_TABLE_EXERCISES);
         db.execSQL(CREATE_TABLE_WORKOUTPLAN);
         db.execSQL(CREATE_TABLE_WORKOUTPLAN_EXERCISES);
+        db.execSQL(CREATE_TABLE_WORKOUTLOG);
+        db.execSQL(CREATE_TABLE_WORKOUTLOG_EXERCISES);
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_EXERCISES);
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_WORKOUTPLAN);
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_WORKOUTPLAN_EXERCISES);
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_WORKOUTLOGS);
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_WORKOUTLOG_EXERCISES);
 
         onCreate(db);
     }
@@ -235,5 +277,29 @@ public class DatabaseTables extends SQLiteOpenHelper{
                 "WHERE " + WORKOUTPLAN_ID + " = " + workoutPlanId);
         db.execSQL("DELETE FROM " + TABLE_WORKOUTPLAN_EXERCISES + " " +
                 "WHERE " + WORKOUTPLAN_ID + " = " + workoutPlanId);
+    }
+
+    public long createWorkoutLog(int day, int month, int year) {
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        ContentValues values = new ContentValues();
+        values.put(WORKOUTLOG_DAY, day);
+        values.put(WORKOUTLOG_MONTH, month);
+        values.put(WORKOUTLOG_YEAR, year);
+
+        long workoutLog_id = db.insert(TABLE_WORKOUTLOGS, null, values);
+        return workoutLog_id;
+    }
+
+    public void addExerciseToWorkoutLog(int sets, int reps, int weight, int exercise_id, int workoutplan_id) {
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        //Log.d(tag, "INSERT INTO " + TABLE_WORKOUTLOG_EXERCISES + " (" + WORKOUTLOG_EXERCISES_SETS + ", " + WORKOUTLOG_EXERCISES_REPS +
+        //        ", " + WORKOUTLOG_EXERCISES_WEIGHT + ", " + EXERCISES_ID + ", " + WORKOUTLOG_ID + ")" +
+        //        "VALUES (" + sets + ", " + reps + ", " + weight + ", " + exercise_id + ", " + workoutplan_id + ")");
+
+        db.execSQL("INSERT INTO " + TABLE_WORKOUTLOG_EXERCISES + " (" + WORKOUTLOG_EXERCISES_SETS + ", " + WORKOUTLOG_EXERCISES_REPS +
+                ", " + WORKOUTLOG_EXERCISES_WEIGHT + ", " + EXERCISES_ID + ", " + WORKOUTLOG_ID + ")" +
+                "VALUES (" + sets + ", " + reps + ", " + weight + ", " + exercise_id + ", " + workoutplan_id + ")");
     }
 }

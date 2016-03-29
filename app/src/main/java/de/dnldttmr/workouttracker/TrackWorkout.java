@@ -17,6 +17,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.Calendar;
 import java.util.List;
 
 import de.dnldttmr.workouttracker.database.DatabaseTables;
@@ -43,6 +44,7 @@ public class TrackWorkout extends AppCompatActivity {
     private ListView lv;
     private Button btn_submit;
     private String tag = "WorkoutTracker";
+    private Calendar calendar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,6 +55,7 @@ public class TrackWorkout extends AppCompatActivity {
         btn_submit = (Button) findViewById(R.id.btn_trackWorkoutSubmit);
 
         databaseTables = new DatabaseTables(getApplicationContext());
+        calendar = Calendar.getInstance();
 
         Intent intent = getIntent();
         workoutPlan = (WorkoutPlan) intent.getSerializableExtra("workoutPlanObject");
@@ -78,7 +81,23 @@ public class TrackWorkout extends AppCompatActivity {
                 }
 
                 if(correctValues) {
+                    int day = calendar.get(Calendar.DAY_OF_MONTH);
+                    int month = calendar.get(Calendar.MONTH);
+                    int year = calendar.get(Calendar.YEAR);
+                    month++;
+                    Log.d(tag, day + "." + month + "." + year);
+
+                    int workoutLogID = (int) databaseTables.createWorkoutLog(day, month, year);
+                    Log.d(tag, "ID: " + workoutLogID);
+
+                    for(int i = 0; i < workoutPlanExerciseList.size(); i++) {
+                        databaseTables.addExerciseToWorkoutLog(setsArray[i], repsArray[i], weightArray[i], workoutPlanExerciseList.get(i).getId(), workoutLogID);
+                    }
+
                     Toast.makeText(getApplicationContext(), "Your Workout has been tracked succesfully!", Toast.LENGTH_SHORT).show();
+
+                    Intent intent = new Intent(getBaseContext(), MainActivity.class);
+                    startActivity(intent);
                 }
                 else {
                     Toast.makeText(getApplicationContext(), "You cannot enter the number 0 for any amount of Reps, Sets or Weight!", Toast.LENGTH_LONG).show();

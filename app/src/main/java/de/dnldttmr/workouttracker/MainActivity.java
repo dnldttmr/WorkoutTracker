@@ -99,6 +99,29 @@ public class MainActivity extends AppCompatActivity {
                 3, 12, 1, "calfraises", "", "www.exrx.net/WeightExercises/Gastrocnemius/BWStandingCalfRaise.html"));
         exercise_table.createExercise(new Exercise("Deadlift", "Back",
                 "Approach the bar so that it is centered over your feet. Your feet should be about hip-width apart. Bend at the hip to grip the bar at shoulder-width allowing your shoulder blades to protract. Typically, you would use an alternating grip. With your feet and your grip set, take a big breath and then lower your hips and flex the knees until your shins contact the bar. Look forward with your head. Keep your chest up and your back arched, and begin driving through the heels to move the weight upward. After the bar passes the knees aggressively pull the bar back, pulling your shoulder blades together as you drive your hips forward into the bar. Lower the bar by bending at the hips and guiding it to the floor. Repeat the movement until your reached the recommend amount of repetitions.",
-                3,10, 3, "deadlift", "deadlift", "http://www.exrx.net/WeightExercises/ErectorSpinae/BBDeadlift.html"));
+                3, 10, 3, "deadlift", "deadlift", "http://www.exrx.net/WeightExercises/ErectorSpinae/BBDeadlift.html"));
+
+        //create workout plans
+        exercise_table.createWorkoutPlan();
+        exercise_table.editWorkoutPlanName(1, "Monday");
+        exercise_table.addExerciseToWorkoutPlan(1, 1);
+
+        exercise_table.createWorkoutPlan();
+        exercise_table.editWorkoutPlanName(2, "Tuesday");
+
+        exercise_table.createWorkoutPlan();
+        exercise_table.editWorkoutPlanName(3, "Wednesday");
+
+        exercise_table.createWorkoutPlan();
+        exercise_table.editWorkoutPlanName(4, "Thursday");
+
+        exercise_table.createWorkoutPlan();
+        exercise_table.editWorkoutPlanName(5, "Friday");
+
+        exercise_table.createWorkoutPlan();
+        exercise_table.editWorkoutPlanName(6, "Saturday");
+
+        exercise_table.createWorkoutPlan();
+        exercise_table.editWorkoutPlanName(7, "Sunday");
     }
 }
