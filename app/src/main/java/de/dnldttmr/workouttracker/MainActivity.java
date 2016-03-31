@@ -18,7 +18,7 @@ public class MainActivity extends AppCompatActivity {
     private Button btn_exerciseOverview;
     private Button btn_workoutPlan;
     private Button btn_trackWorkout;
-    private Button btn_statistics;
+    private Button btn_log;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,7 +29,7 @@ public class MainActivity extends AppCompatActivity {
         btn_exerciseOverview = (Button) findViewById(R.id.btn_exerciseOverview);
         btn_workoutPlan = (Button) findViewById(R.id.btn_workoutPlan);
         btn_trackWorkout = (Button) findViewById(R.id.btn_trackWorkout);
-        btn_statistics = (Button) findViewById(R.id.btn_logOverview);
+        btn_log = (Button) findViewById(R.id.btn_logOverview);
 
         exercise_table = new DatabaseTables(getApplicationContext());
 
@@ -71,10 +71,11 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        btn_statistics.setOnClickListener(new View.OnClickListener() {
+        btn_log.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                Intent intent = new Intent(getBaseContext(), WorkoutCalendar.class);
+                startActivity(intent);
             }
         });
     }

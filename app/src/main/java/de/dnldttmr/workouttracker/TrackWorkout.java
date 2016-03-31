@@ -98,6 +98,7 @@ public class TrackWorkout extends AppCompatActivity {
 
                     Intent intent = new Intent(getBaseContext(), MainActivity.class);
                     startActivity(intent);
+                    finish();
                 }
                 else {
                     Toast.makeText(getApplicationContext(), "You cannot enter the number 0 for any amount of Reps, Sets or Weight!", Toast.LENGTH_LONG).show();

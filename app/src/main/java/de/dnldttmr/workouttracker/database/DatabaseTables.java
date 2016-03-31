@@ -226,13 +226,38 @@ public class DatabaseTables extends SQLiteOpenHelper{
         db.execSQL("UPDATE " + TABLE_WORKOUTPLAN + " SET " + WORKOUTPLAN_NAME + " = '" + name + "' WHERE " + WORKOUTPLAN_ID + " = " + id);
     }
 
+    public List<WorkoutLog> getAllWorkoutLogs() {
+        SQLiteDatabase db = this.getWritableDatabase();
+        List<WorkoutLog> workoutLogList= new ArrayList<WorkoutLog>();
+
+        Cursor cursor = db.query(TABLE_WORKOUTLOGS, columns_workoutLog, null, null, null, null, null);
+
+        cursor.moveToFirst();
+
+        while(!cursor.isAfterLast()) {
+            WorkoutLog workoutLog = new WorkoutLog();
+            workoutLog.setID(Integer.parseInt(cursor.getString(0)));
+            workoutLog.setDay(Integer.parseInt(cursor.getString(1)));
+            workoutLog.setMonth(Integer.parseInt(cursor.getString(2)));
+            workoutLog.setYear(Integer.parseInt(cursor.getString(3)));
+
+            workoutLogList.add(workoutLog);
+
+            cursor.moveToNext();
+        }
+
+        cursor.close();
+
+        return workoutLogList;
+    }
+
     public List<Exercise> returnExercisesForWorkoutPlan(int id) {
         SQLiteDatabase db = this.getWritableDatabase();
         List<Exercise> exerciseList = new ArrayList<Exercise>();
 
         //Cursor cursor = db.exeqSQL("SELECT e.exercises_id, e.name, e.muscle_group");
         Cursor cursor = db.rawQuery("SELECT e.exercises_id, e.name, e.muscle_group, e.sets, e.reps from exercises e " +
-                "JOIN " + TABLE_WORKOUTPLAN_EXERCISES + " using (" + EXERCISES_ID +") " +
+                "JOIN " + TABLE_WORKOUTPLAN_EXERCISES + " using (" + EXERCISES_ID + ") " +
                 "JOIN " + TABLE_WORKOUTPLAN + " using (" + WORKOUTPLAN_ID + ") " +
                 "WHERE " + WORKOUTPLAN_ID + " = " + id, null);
 
@@ -245,6 +270,38 @@ public class DatabaseTables extends SQLiteOpenHelper{
             exercise.setMuscle_group(cursor.getString(2));
             exercise.setSets(Integer.parseInt(cursor.getString(3)));
             exercise.setReps(Integer.parseInt(cursor.getString(4)));
+
+            exerciseList.add(exercise);
+
+            cursor.moveToNext();
+        }
+
+        cursor.close();
+
+        return exerciseList;
+    }
+
+    public List<Exercise> getExercisesForDate(int day, int month, int year) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        List<Exercise> exerciseList = new ArrayList<Exercise>();
+
+        Cursor cursor = db.rawQuery("SELECT e.exercises_id, e.name, w.log_sets, w.log_reps, w.log_weight " +
+                "FROM " + TABLE_EXERCISES + " e " +
+                "JOIN " + TABLE_WORKOUTLOG_EXERCISES + " w using (exercises_id) " +
+                "JOIN " + TABLE_WORKOUTLOGS + " l using (" + WORKOUTLOG_ID + ") " +
+                "WHERE l.day = " + day + " " +
+                "AND l.month = " + month + " " +
+                "AND l.year = " + year,null);
+
+        cursor.moveToFirst();
+
+        while(!cursor.isAfterLast()) {
+            Exercise exercise = new Exercise();
+            exercise.setId(Integer.parseInt(cursor.getString(0)));
+            exercise.setName(cursor.getString(1));
+            exercise.setSets(Integer.parseInt(cursor.getString(2)));
+            exercise.setReps(Integer.parseInt(cursor.getString(3)));
+            exercise.setDifficulty(Integer.parseInt(cursor.getString(4)));
 
             exerciseList.add(exercise);
 

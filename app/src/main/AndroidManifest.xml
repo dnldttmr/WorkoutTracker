@@ -33,6 +33,12 @@
         </activity>
         <activity android:name=".TrackWorkout">
         </activity>
+        <activity android:name=".WorkoutCalendar">
+        </activity>
+        <activity android:name=".WorkoutStatistics">
+        </activity>
+        <activity android:name=".ExerciseStatistic">
+        </activity>
     </application>
 
 </manifest>
