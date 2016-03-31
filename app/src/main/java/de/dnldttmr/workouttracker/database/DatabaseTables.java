@@ -281,6 +281,33 @@ public class DatabaseTables extends SQLiteOpenHelper{
         return exerciseList;
     }
 
+    public List<Exercise> getExercisesFromID(int id) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        List<Exercise> exerciseList = new ArrayList<Exercise>();
+
+        Cursor cursor = db.rawQuery("SELECT e.name, w.log_weight " +
+                "FROM " + TABLE_EXERCISES + " e " +
+                "JOIN " + TABLE_WORKOUTLOG_EXERCISES + " w using (exercises_id) " +
+                "WHERE e.exercises_id = " + id
+                , null);
+
+        cursor.moveToFirst();
+
+        while(!cursor.isAfterLast()) {
+            Exercise exercise = new Exercise();
+            exercise.setName(cursor.getString(0));
+            exercise.setDifficulty(Integer.parseInt(cursor.getString(1)));
+
+            exerciseList.add(exercise);
+
+            cursor.moveToNext();
+        }
+
+        cursor.close();
+
+        return exerciseList;
+    }
+
     public List<Exercise> getExercisesForDate(int day, int month, int year) {
         SQLiteDatabase db = this.getWritableDatabase();
         List<Exercise> exerciseList = new ArrayList<Exercise>();

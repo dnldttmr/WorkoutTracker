@@ -2,6 +2,13 @@
 <items version="2" >
 
     <item
+        jar="C:\Users\Daniel\.gradle\caches\modules-2\files-2.1\com.github.PhilJay\MPAndroidChart\v2.2.4\7abd1ecef320da6a7679b137083151401fe8bf43\MPAndroidChart-v2.2.4.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="7abd1ecef320da6a7679b137083151401fe8bf43">
+        <dex dex="C:\Users\Daniel\Downloads\WorkoutTracker\app\build\intermediates\pre-dexed\debug\MPAndroidChart-v2.2.4-b8aa0c6620e7488e3b7152a50f1f68af4ce77f43.jar" />
+    </item>
+    <item
         jar="C:\Users\Daniel\.gradle\caches\modules-2\files-2.1\com.darwinsys\hirondelle-date4j\1.5.1\7b52de513f87ae4d9ff5d17518def0a1e9bc3df0\hirondelle-date4j-1.5.1.jar"
         jumboMode="false"
         revision="23.0.1"
